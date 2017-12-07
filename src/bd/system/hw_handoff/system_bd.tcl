@@ -20,7 +20,7 @@ set script_folder [_tcl::get_script_folder]
 ################################################################
 # Check if script is running in correct Vivado version.
 ################################################################
-set scripts_vivado_version 2017.2
+set scripts_vivado_version 2017.3
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
@@ -49,6 +49,7 @@ if { $list_projs eq "" } {
 
 
 # CHANGE DESIGN NAME HERE
+variable design_name
 set design_name system
 
 # This script was generated for a remote BD. To create a non-remote design,
@@ -164,7 +165,7 @@ proc create_hier_cell_microblaze_0_local_memory { parentCell nameHier } {
   # Create instance: dlmb_bram_if_cntlr, and set properties
   set dlmb_bram_if_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 dlmb_bram_if_cntlr ]
   set_property -dict [ list \
-CONFIG.C_ECC {0} \
+   CONFIG.C_ECC {0} \
  ] $dlmb_bram_if_cntlr
 
   # Create instance: dlmb_v10, and set properties
@@ -173,17 +174,23 @@ CONFIG.C_ECC {0} \
   # Create instance: ilmb_bram_if_cntlr, and set properties
   set ilmb_bram_if_cntlr [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_bram_if_cntlr:4.0 ilmb_bram_if_cntlr ]
   set_property -dict [ list \
-CONFIG.C_ECC {0} \
+   CONFIG.C_ECC {0} \
  ] $ilmb_bram_if_cntlr
 
   # Create instance: ilmb_v10, and set properties
   set ilmb_v10 [ create_bd_cell -type ip -vlnv xilinx.com:ip:lmb_v10:3.0 ilmb_v10 ]
 
   # Create instance: lmb_bram, and set properties
-  set lmb_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.3 lmb_bram ]
+  set lmb_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 lmb_bram ]
   set_property -dict [ list \
-CONFIG.Memory_Type {True_Dual_Port_RAM} \
-CONFIG.use_bram_block {BRAM_Controller} \
+   CONFIG.EN_SAFETY_CKT {false} \
+   CONFIG.Enable_B {Use_ENB_Pin} \
+   CONFIG.Memory_Type {True_Dual_Port_RAM} \
+   CONFIG.Port_B_Clock {100} \
+   CONFIG.Port_B_Enable_Rate {100} \
+   CONFIG.Port_B_Write_Rate {50} \
+   CONFIG.Use_RSTB_Pin {true} \
+   CONFIG.use_bram_block {BRAM_Controller} \
  ] $lmb_bram
 
   # Create interface connections
@@ -208,6 +215,7 @@ CONFIG.use_bram_block {BRAM_Controller} \
 proc create_root_design { parentCell } {
 
   variable script_folder
+  variable design_name
 
   if { $parentCell eq "" } {
      set parentCell [get_bd_cells /]
@@ -253,55 +261,55 @@ proc create_root_design { parentCell } {
   # Create ports
   set reset [ create_bd_port -dir I -type rst reset ]
   set_property -dict [ list \
-CONFIG.POLARITY {ACTIVE_LOW} \
+   CONFIG.POLARITY {ACTIVE_LOW} \
  ] $reset
   set rgb_led [ create_bd_port -dir O -from 5 -to 0 rgb_led ]
   set sys_clock [ create_bd_port -dir I -type clk sys_clock ]
   set_property -dict [ list \
-CONFIG.FREQ_HZ {12000000} \
-CONFIG.PHASE {0.000} \
+   CONFIG.FREQ_HZ {12000000} \
+   CONFIG.PHASE {0.000} \
  ] $sys_clock
 
   # Create instance: PWM_0, and set properties
   set PWM_0 [ create_bd_cell -type ip -vlnv digilentinc.com:IP:PWM:2.0 PWM_0 ]
   set_property -dict [ list \
-CONFIG.NUM_PWM {6} \
+   CONFIG.NUM_PWM {6} \
  ] $PWM_0
 
   # Create instance: axi_gpio_input, and set properties
   set axi_gpio_input [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_input ]
   set_property -dict [ list \
-CONFIG.C_ALL_INPUTS {1} \
-CONFIG.C_ALL_INPUTS_2 {1} \
-CONFIG.C_GPIO2_WIDTH {4} \
-CONFIG.C_GPIO_WIDTH {4} \
-CONFIG.C_INTERRUPT_PRESENT {1} \
-CONFIG.C_IS_DUAL {1} \
-CONFIG.GPIO2_BOARD_INTERFACE {dip_switches_4bits} \
-CONFIG.GPIO_BOARD_INTERFACE {push_buttons_4bits} \
-CONFIG.USE_BOARD_FLOW {true} \
+   CONFIG.C_ALL_INPUTS {1} \
+   CONFIG.C_ALL_INPUTS_2 {1} \
+   CONFIG.C_GPIO2_WIDTH {4} \
+   CONFIG.C_GPIO_WIDTH {4} \
+   CONFIG.C_INTERRUPT_PRESENT {1} \
+   CONFIG.C_IS_DUAL {1} \
+   CONFIG.GPIO2_BOARD_INTERFACE {dip_switches_4bits} \
+   CONFIG.GPIO_BOARD_INTERFACE {push_buttons_4bits} \
+   CONFIG.USE_BOARD_FLOW {true} \
  ] $axi_gpio_input
 
   # Create instance: axi_gpio_led, and set properties
   set axi_gpio_led [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_gpio:2.0 axi_gpio_led ]
   set_property -dict [ list \
-CONFIG.C_GPIO2_WIDTH {32} \
-CONFIG.C_GPIO_WIDTH {4} \
-CONFIG.C_IS_DUAL {0} \
-CONFIG.GPIO2_BOARD_INTERFACE {Custom} \
-CONFIG.GPIO_BOARD_INTERFACE {led_4bits} \
-CONFIG.USE_BOARD_FLOW {true} \
+   CONFIG.C_GPIO2_WIDTH {32} \
+   CONFIG.C_GPIO_WIDTH {4} \
+   CONFIG.C_IS_DUAL {0} \
+   CONFIG.GPIO2_BOARD_INTERFACE {Custom} \
+   CONFIG.GPIO_BOARD_INTERFACE {led_4bits} \
+   CONFIG.USE_BOARD_FLOW {true} \
  ] $axi_gpio_led
 
   # Create instance: axi_quad_spi_0, and set properties
   set axi_quad_spi_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_quad_spi:3.2 axi_quad_spi_0 ]
   set_property -dict [ list \
-CONFIG.C_FIFO_DEPTH {256} \
-CONFIG.C_SCK_RATIO {2} \
-CONFIG.C_SPI_MEMORY {3} \
-CONFIG.C_SPI_MODE {2} \
-CONFIG.QSPI_BOARD_INTERFACE {qspi_flash} \
-CONFIG.USE_BOARD_FLOW {true} \
+   CONFIG.C_FIFO_DEPTH {256} \
+   CONFIG.C_SCK_RATIO {2} \
+   CONFIG.C_SPI_MEMORY {3} \
+   CONFIG.C_SPI_MODE {2} \
+   CONFIG.QSPI_BOARD_INTERFACE {qspi_flash} \
+   CONFIG.USE_BOARD_FLOW {true} \
  ] $axi_quad_spi_0
 
   # Create instance: axi_timer_0, and set properties
@@ -310,37 +318,37 @@ CONFIG.USE_BOARD_FLOW {true} \
   # Create instance: axi_uartlite_0, and set properties
   set axi_uartlite_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_uartlite:2.0 axi_uartlite_0 ]
   set_property -dict [ list \
-CONFIG.C_BAUDRATE {115200} \
-CONFIG.UARTLITE_BOARD_INTERFACE {usb_uart} \
-CONFIG.USE_BOARD_FLOW {true} \
+   CONFIG.C_BAUDRATE {115200} \
+   CONFIG.UARTLITE_BOARD_INTERFACE {usb_uart} \
+   CONFIG.USE_BOARD_FLOW {true} \
  ] $axi_uartlite_0
 
   # Create instance: clk_wiz_0, and set properties
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:5.4 clk_wiz_0 ]
   set_property -dict [ list \
-CONFIG.CLKIN1_JITTER_PS {833.33} \
-CONFIG.CLKOUT1_DRIVES {BUFG} \
-CONFIG.CLKOUT1_JITTER {479.872} \
-CONFIG.CLKOUT1_PHASE_ERROR {668.310} \
-CONFIG.CLKOUT2_DRIVES {BUFG} \
-CONFIG.CLKOUT3_DRIVES {BUFG} \
-CONFIG.CLKOUT4_DRIVES {BUFG} \
-CONFIG.CLKOUT5_DRIVES {BUFG} \
-CONFIG.CLKOUT6_DRIVES {BUFG} \
-CONFIG.CLKOUT7_DRIVES {BUFG} \
-CONFIG.CLK_IN1_BOARD_INTERFACE {sys_clock} \
-CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
-CONFIG.MMCM_CLKFBOUT_MULT_F {62.500} \
-CONFIG.MMCM_CLKIN1_PERIOD {83.333} \
-CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-CONFIG.MMCM_CLKOUT0_DIVIDE_F {7.500} \
-CONFIG.MMCM_COMPENSATION {ZHOLD} \
-CONFIG.MMCM_DIVCLK_DIVIDE {1} \
-CONFIG.PRIMITIVE {MMCM} \
-CONFIG.RESET_BOARD_INTERFACE {reset} \
-CONFIG.RESET_PORT {resetn} \
-CONFIG.RESET_TYPE {ACTIVE_LOW} \
-CONFIG.USE_BOARD_FLOW {true} \
+   CONFIG.CLKIN1_JITTER_PS {833.33} \
+   CONFIG.CLKOUT1_DRIVES {BUFG} \
+   CONFIG.CLKOUT1_JITTER {479.872} \
+   CONFIG.CLKOUT1_PHASE_ERROR {668.310} \
+   CONFIG.CLKOUT2_DRIVES {BUFG} \
+   CONFIG.CLKOUT3_DRIVES {BUFG} \
+   CONFIG.CLKOUT4_DRIVES {BUFG} \
+   CONFIG.CLKOUT5_DRIVES {BUFG} \
+   CONFIG.CLKOUT6_DRIVES {BUFG} \
+   CONFIG.CLKOUT7_DRIVES {BUFG} \
+   CONFIG.CLK_IN1_BOARD_INTERFACE {sys_clock} \
+   CONFIG.FEEDBACK_SOURCE {FDBK_AUTO} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {62.500} \
+   CONFIG.MMCM_CLKIN1_PERIOD {83.333} \
+   CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {7.500} \
+   CONFIG.MMCM_COMPENSATION {ZHOLD} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
+   CONFIG.PRIMITIVE {MMCM} \
+   CONFIG.RESET_BOARD_INTERFACE {reset} \
+   CONFIG.RESET_PORT {resetn} \
+   CONFIG.RESET_TYPE {ACTIVE_LOW} \
+   CONFIG.USE_BOARD_FLOW {true} \
  ] $clk_wiz_0
 
   # Create instance: mdm_1, and set properties
@@ -349,35 +357,40 @@ CONFIG.USE_BOARD_FLOW {true} \
   # Create instance: microblaze_0, and set properties
   set microblaze_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:microblaze:10.0 microblaze_0 ]
   set_property -dict [ list \
-CONFIG.C_ADDR_TAG_BITS {0} \
-CONFIG.C_AREA_OPTIMIZED {1} \
-CONFIG.C_CACHE_BYTE_SIZE {65536} \
-CONFIG.C_DCACHE_ADDR_TAG {0} \
-CONFIG.C_DCACHE_BYTE_SIZE {65536} \
-CONFIG.C_DEBUG_ENABLED {1} \
-CONFIG.C_D_AXI {1} \
-CONFIG.C_D_LMB {1} \
-CONFIG.C_I_AXI {0} \
-CONFIG.C_I_LMB {1} \
-CONFIG.C_USE_BARREL {1} \
-CONFIG.C_USE_DCACHE {0} \
-CONFIG.C_USE_HW_MUL {1} \
-CONFIG.C_USE_ICACHE {0} \
-CONFIG.C_USE_MSR_INSTR {1} \
-CONFIG.C_USE_PCMP_INSTR {1} \
-CONFIG.C_USE_REORDER_INSTR {0} \
+   CONFIG.C_ADDR_TAG_BITS {0} \
+   CONFIG.C_AREA_OPTIMIZED {1} \
+   CONFIG.C_CACHE_BYTE_SIZE {4096} \
+   CONFIG.C_DCACHE_ADDR_TAG {0} \
+   CONFIG.C_DCACHE_BYTE_SIZE {4096} \
+   CONFIG.C_DEBUG_ENABLED {1} \
+   CONFIG.C_D_AXI {1} \
+   CONFIG.C_D_LMB {1} \
+   CONFIG.C_I_AXI {0} \
+   CONFIG.C_I_LMB {1} \
+   CONFIG.C_MMU_DTLB_SIZE {2} \
+   CONFIG.C_MMU_ITLB_SIZE {1} \
+   CONFIG.C_MMU_ZONES {2} \
+   CONFIG.C_USE_BARREL {1} \
+   CONFIG.C_USE_DCACHE {0} \
+   CONFIG.C_USE_HW_MUL {1} \
+   CONFIG.C_USE_ICACHE {0} \
+   CONFIG.C_USE_MSR_INSTR {1} \
+   CONFIG.C_USE_PCMP_INSTR {1} \
+   CONFIG.C_USE_REORDER_INSTR {0} \
+   CONFIG.G_TEMPLATE_LIST {8} \
  ] $microblaze_0
 
   # Create instance: microblaze_0_axi_intc, and set properties
   set microblaze_0_axi_intc [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_intc:4.1 microblaze_0_axi_intc ]
   set_property -dict [ list \
-CONFIG.C_HAS_FAST {1} \
+   CONFIG.C_HAS_FAST {1} \
  ] $microblaze_0_axi_intc
 
   # Create instance: microblaze_0_axi_periph, and set properties
   set microblaze_0_axi_periph [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 microblaze_0_axi_periph ]
   set_property -dict [ list \
-CONFIG.NUM_MI {8} \
+   CONFIG.NUM_MI {8} \
+   CONFIG.SYNCHRONIZATION_STAGES {2} \
  ] $microblaze_0_axi_periph
 
   # Create instance: microblaze_0_local_memory
@@ -386,41 +399,38 @@ CONFIG.NUM_MI {8} \
   # Create instance: microblaze_0_xlconcat, and set properties
   set microblaze_0_xlconcat [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconcat:2.1 microblaze_0_xlconcat ]
   set_property -dict [ list \
-CONFIG.NUM_PORTS {5} \
+   CONFIG.NUM_PORTS {5} \
  ] $microblaze_0_xlconcat
 
   # Create instance: rst_clk_wiz_0_100M, and set properties
   set rst_clk_wiz_0_100M [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 rst_clk_wiz_0_100M ]
   set_property -dict [ list \
-CONFIG.RESET_BOARD_INTERFACE {reset} \
-CONFIG.USE_BOARD_FLOW {true} \
+   CONFIG.RESET_BOARD_INTERFACE {reset} \
+   CONFIG.USE_BOARD_FLOW {true} \
  ] $rst_clk_wiz_0_100M
 
   # Create instance: xadc_wiz_0, and set properties
   set xadc_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xadc_wiz:3.3 xadc_wiz_0 ]
   set_property -dict [ list \
-CONFIG.ADC_CONVERSION_RATE {200} \
-CONFIG.CHANNEL_ENABLE_TEMPERATURE {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP0_VAUXN0 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP10_VAUXN10 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP11_VAUXN11 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP1_VAUXN1 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP2_VAUXN2 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP3_VAUXN3 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP8_VAUXN8 {true} \
-CONFIG.CHANNEL_ENABLE_VAUXP9_VAUXN9 {true} \
-CONFIG.CHANNEL_ENABLE_VP_VN {true} \
-CONFIG.ENABLE_TEMP_BUS {false} \
-CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
-CONFIG.SEQUENCER_MODE {Continuous} \
-CONFIG.SINGLE_CHANNEL_SELECTION {TEMPERATURE} \
-CONFIG.XADC_STARUP_SELECTION {channel_sequencer} \
+   CONFIG.ADC_CONVERSION_RATE {200} \
+   CONFIG.CHANNEL_ENABLE_TEMPERATURE {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP0_VAUXN0 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP10_VAUXN10 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP11_VAUXN11 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP1_VAUXN1 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP2_VAUXN2 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP3_VAUXN3 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP8_VAUXN8 {true} \
+   CONFIG.CHANNEL_ENABLE_VAUXP9_VAUXN9 {true} \
+   CONFIG.CHANNEL_ENABLE_VP_VN {true} \
+   CONFIG.ENABLE_RESET {false} \
+   CONFIG.ENABLE_TEMP_BUS {false} \
+   CONFIG.EXTERNAL_MUX_CHANNEL {VP_VN} \
+   CONFIG.INTERFACE_SELECTION {Enable_AXI} \
+   CONFIG.SEQUENCER_MODE {Continuous} \
+   CONFIG.SINGLE_CHANNEL_SELECTION {TEMPERATURE} \
+   CONFIG.XADC_STARUP_SELECTION {channel_sequencer} \
  ] $xadc_wiz_0
-
-  set_property -dict [ list \
-CONFIG.NUM_READ_OUTSTANDING {1} \
-CONFIG.NUM_WRITE_OUTSTANDING {1} \
- ] [get_bd_intf_pins /xadc_wiz_0/s_axi_lite]
 
   # Create interface connections
   connect_bd_intf_net -intf_net Vaux0_1 [get_bd_intf_ports Vaux0] [get_bd_intf_pins xadc_wiz_0/Vaux0]

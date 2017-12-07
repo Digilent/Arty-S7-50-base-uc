@@ -1,10 +1,10 @@
 -- Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
--- Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
--- Date        : Fri Aug 25 15:44:10 2017
--- Host        : WK73 running 64-bit Service Pack 1  (build 7601)
+-- Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
+-- Date        : Wed Dec  6 20:59:15 2017
+-- Host        : DESKTOP-9HMNAI5 running 64-bit major release  (build 9200)
 -- Command     : write_vhdl -force -mode synth_stub
---               c:/sam_work/git/digilent/Arty-S7-50-base-uc/src/bd/system/ip/system_dlmb_bram_if_cntlr_0/system_dlmb_bram_if_cntlr_0_stub.vhdl
+--               C:/sam_work/git/digilent/Arty-S7-50-base-uc/src/bd/system/ip/system_dlmb_bram_if_cntlr_0/system_dlmb_bram_if_cntlr_0_stub.vhdl
 -- Design      : system_dlmb_bram_if_cntlr_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xc7s50csga324-1
@@ -44,6 +44,6 @@ attribute black_box_pad_pin : string;
 attribute syn_black_box of stub : architecture is true;
 attribute black_box_pad_pin of stub : architecture is "LMB_Clk,LMB_Rst,LMB_ABus[0:31],LMB_WriteDBus[0:31],LMB_AddrStrobe,LMB_ReadStrobe,LMB_WriteStrobe,LMB_BE[0:3],Sl_DBus[0:31],Sl_Ready,Sl_Wait,Sl_UE,Sl_CE,BRAM_Rst_A,BRAM_Clk_A,BRAM_Addr_A[0:31],BRAM_EN_A,BRAM_WEN_A[0:3],BRAM_Dout_A[0:31],BRAM_Din_A[0:31]";
 attribute x_core_info : string;
-attribute x_core_info of stub : architecture is "lmb_bram_if_cntlr,Vivado 2017.2";
+attribute x_core_info of stub : architecture is "lmb_bram_if_cntlr,Vivado 2017.3";
 begin
 end;

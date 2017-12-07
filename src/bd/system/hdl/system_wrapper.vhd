@@ -1,8 +1,8 @@
 --Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
---Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
---Date        : Fri Aug 25 15:42:13 2017
---Host        : WK73 running 64-bit Service Pack 1  (build 7601)
+--Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
+--Date        : Wed Dec  6 20:57:27 2017
+--Host        : DESKTOP-9HMNAI5 running 64-bit major release  (build 9200)
 --Command     : generate_target system_wrapper.bd
 --Design      : system_wrapper
 --Purpose     : IP block netlist
@@ -50,15 +50,8 @@ end system_wrapper;
 architecture STRUCTURE of system_wrapper is
   component system is
   port (
-    reset : in STD_LOGIC;
-    rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
-    sys_clock : in STD_LOGIC;
     Vaux0_v_n : in STD_LOGIC;
     Vaux0_v_p : in STD_LOGIC;
-    Vaux10_v_n : in STD_LOGIC;
-    Vaux10_v_p : in STD_LOGIC;
-    Vaux11_v_n : in STD_LOGIC;
-    Vaux11_v_p : in STD_LOGIC;
     Vaux1_v_n : in STD_LOGIC;
     Vaux1_v_p : in STD_LOGIC;
     Vaux2_v_n : in STD_LOGIC;
@@ -69,13 +62,17 @@ architecture STRUCTURE of system_wrapper is
     Vaux8_v_p : in STD_LOGIC;
     Vaux9_v_n : in STD_LOGIC;
     Vaux9_v_p : in STD_LOGIC;
+    Vaux10_v_n : in STD_LOGIC;
+    Vaux10_v_p : in STD_LOGIC;
+    Vaux11_v_n : in STD_LOGIC;
+    Vaux11_v_p : in STD_LOGIC;
     Vp_Vn_v_n : in STD_LOGIC;
     Vp_Vn_v_p : in STD_LOGIC;
-    push_buttons_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    dip_switches_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     led_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     led_4bits_tri_o : out STD_LOGIC_VECTOR ( 3 downto 0 );
     led_4bits_tri_t : out STD_LOGIC_VECTOR ( 3 downto 0 );
-    dip_switches_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
+    push_buttons_4bits_tri_i : in STD_LOGIC_VECTOR ( 3 downto 0 );
     qspi_flash_io0_i : in STD_LOGIC;
     qspi_flash_io0_o : out STD_LOGIC;
     qspi_flash_io0_t : out STD_LOGIC;
@@ -92,7 +89,10 @@ architecture STRUCTURE of system_wrapper is
     qspi_flash_ss_o : out STD_LOGIC;
     qspi_flash_ss_t : out STD_LOGIC;
     usb_uart_rxd : in STD_LOGIC;
-    usb_uart_txd : out STD_LOGIC
+    usb_uart_txd : out STD_LOGIC;
+    rgb_led : out STD_LOGIC_VECTOR ( 5 downto 0 );
+    reset : in STD_LOGIC;
+    sys_clock : in STD_LOGIC
   );
   end component system;
   component IOBUF is

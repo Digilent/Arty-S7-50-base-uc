@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
-// Date        : Fri Aug 25 15:45:52 2017
-// Host        : WK73 running 64-bit Service Pack 1  (build 7601)
+// Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
+// Date        : Wed Dec  6 20:59:58 2017
+// Host        : DESKTOP-9HMNAI5 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               c:/sam_work/git/digilent/Arty-S7-50-base-uc/src/bd/system/ip/system_mdm_1_0/system_mdm_1_0_sim_netlist.v
+//               C:/sam_work/git/digilent/Arty-S7-50-base-uc/src/bd/system/ip/system_mdm_1_0/system_mdm_1_0_sim_netlist.v
 // Design      : system_mdm_1_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.
@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CHECK_LICENSE_TYPE = "system_mdm_1_0,MDM,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MDM,Vivado 2017.2" *) 
+(* CHECK_LICENSE_TYPE = "system_mdm_1_0,MDM,{}" *) (* downgradeipidentifiedwarnings = "yes" *) (* x_core_info = "MDM,Vivado 2017.3" *) 
 (* NotValidForBitStream *)
 module system_mdm_1_0
    (Debug_SYS_Rst,
@@ -25,7 +25,7 @@ module system_mdm_1_0
     Dbg_Update_0,
     Dbg_Rst_0,
     Dbg_Disable_0);
-  (* x_interface_info = "xilinx.com:signal:reset:1.0 RST.Debug_SYS_Rst RST" *) output Debug_SYS_Rst;
+  (* x_interface_info = "xilinx.com:signal:reset:1.0 RST.Debug_SYS_Rst RST" *) (* x_interface_parameter = "XIL_INTERFACENAME RST.Debug_SYS_Rst, POLARITY ACTIVE_HIGH" *) output Debug_SYS_Rst;
   (* x_interface_info = "xilinx.com:interface:mbdebug:3.0 MBDEBUG_0 CLK" *) output Dbg_Clk_0;
   (* x_interface_info = "xilinx.com:interface:mbdebug:3.0 MBDEBUG_0 TDI" *) output Dbg_TDI_0;
   (* x_interface_info = "xilinx.com:interface:mbdebug:3.0 MBDEBUG_0 TDO" *) input Dbg_TDO_0;
@@ -931,6 +931,7 @@ module system_mdm_1_0
   wire [31:0]NLW_U0_TRACE_DATA_UNCONNECTED;
 
   (* C_AVOID_PRIMITIVES = "0" *) 
+  (* C_BSCANID = "76547328" *) 
   (* C_DATA_SIZE = "32" *) 
   (* C_DBG_MEM_ACCESS = "0" *) 
   (* C_DBG_REG_ACCESS = "0" *) 
@@ -2464,11 +2465,13 @@ module system_mdm_1_0
         .Trig_Out_1(NLW_U0_Trig_Out_1_UNCONNECTED),
         .Trig_Out_2(NLW_U0_Trig_Out_2_UNCONNECTED),
         .Trig_Out_3(NLW_U0_Trig_Out_3_UNCONNECTED),
+        .bscan_ext_bscanid_en(1'b0),
         .bscan_ext_capture(1'b0),
         .bscan_ext_drck(1'b0),
         .bscan_ext_reset(1'b0),
         .bscan_ext_sel(1'b0),
         .bscan_ext_shift(1'b0),
+        .bscan_ext_tck(1'b0),
         .bscan_ext_tdi(1'b0),
         .bscan_ext_tdo(NLW_U0_bscan_ext_tdo_UNCONNECTED),
         .bscan_ext_update(1'b0));
@@ -4681,15 +4684,16 @@ module system_mdm_1_0_MB_SRL16E__parameterized5
         .Q(ID_TDO_2));
 endmodule
 
-(* C_AVOID_PRIMITIVES = "0" *) (* C_DATA_SIZE = "32" *) (* C_DBG_MEM_ACCESS = "0" *) 
-(* C_DBG_REG_ACCESS = "0" *) (* C_DEBUG_INTERFACE = "0" *) (* C_FAMILY = "spartan7" *) 
-(* C_INTERCONNECT = "2" *) (* C_JTAG_CHAIN = "2" *) (* C_MB_DBG_PORTS = "1" *) 
-(* C_M_AXIS_DATA_WIDTH = "32" *) (* C_M_AXIS_ID_WIDTH = "7" *) (* C_M_AXI_ADDR_WIDTH = "32" *) 
-(* C_M_AXI_DATA_WIDTH = "32" *) (* C_M_AXI_THREAD_ID_WIDTH = "1" *) (* C_S_AXI_ACLK_FREQ_HZ = "100000000" *) 
-(* C_S_AXI_ADDR_WIDTH = "4" *) (* C_S_AXI_DATA_WIDTH = "32" *) (* C_TRACE_ASYNC_RESET = "0" *) 
-(* C_TRACE_CLK_FREQ_HZ = "200000000" *) (* C_TRACE_CLK_OUT_PHASE = "90" *) (* C_TRACE_DATA_WIDTH = "32" *) 
-(* C_TRACE_OUTPUT = "0" *) (* C_USE_BSCAN = "0" *) (* C_USE_CONFIG_RESET = "0" *) 
-(* C_USE_CROSS_TRIGGER = "0" *) (* C_USE_UART = "0" *) (* ORIG_REF_NAME = "MDM" *) 
+(* C_AVOID_PRIMITIVES = "0" *) (* C_BSCANID = "76547328" *) (* C_DATA_SIZE = "32" *) 
+(* C_DBG_MEM_ACCESS = "0" *) (* C_DBG_REG_ACCESS = "0" *) (* C_DEBUG_INTERFACE = "0" *) 
+(* C_FAMILY = "spartan7" *) (* C_INTERCONNECT = "2" *) (* C_JTAG_CHAIN = "2" *) 
+(* C_MB_DBG_PORTS = "1" *) (* C_M_AXIS_DATA_WIDTH = "32" *) (* C_M_AXIS_ID_WIDTH = "7" *) 
+(* C_M_AXI_ADDR_WIDTH = "32" *) (* C_M_AXI_DATA_WIDTH = "32" *) (* C_M_AXI_THREAD_ID_WIDTH = "1" *) 
+(* C_S_AXI_ACLK_FREQ_HZ = "100000000" *) (* C_S_AXI_ADDR_WIDTH = "4" *) (* C_S_AXI_DATA_WIDTH = "32" *) 
+(* C_TRACE_ASYNC_RESET = "0" *) (* C_TRACE_CLK_FREQ_HZ = "200000000" *) (* C_TRACE_CLK_OUT_PHASE = "90" *) 
+(* C_TRACE_DATA_WIDTH = "32" *) (* C_TRACE_OUTPUT = "0" *) (* C_USE_BSCAN = "0" *) 
+(* C_USE_CONFIG_RESET = "0" *) (* C_USE_CROSS_TRIGGER = "0" *) (* C_USE_UART = "0" *) 
+(* ORIG_REF_NAME = "MDM" *) 
 module system_mdm_1_0_MDM
    (Config_Reset,
     Scan_Reset_Sel,
@@ -6198,6 +6202,8 @@ module system_mdm_1_0_MDM
     bscan_ext_sel,
     bscan_ext_drck,
     bscan_ext_tdo,
+    bscan_ext_tck,
+    bscan_ext_bscanid_en,
     Ext_JTAG_DRCK,
     Ext_JTAG_RESET,
     Ext_JTAG_SEL,
@@ -7713,6 +7719,8 @@ module system_mdm_1_0_MDM
   input bscan_ext_sel;
   input bscan_ext_drck;
   output bscan_ext_tdo;
+  input bscan_ext_tck;
+  input bscan_ext_bscanid_en;
   output Ext_JTAG_DRCK;
   output Ext_JTAG_RESET;
   output Ext_JTAG_SEL;

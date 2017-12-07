@@ -1,10 +1,10 @@
 // Copyright 1986-2017 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
-// Tool Version: Vivado v.2017.2 (win64) Build 1909853 Thu Jun 15 18:39:09 MDT 2017
-// Date        : Fri Aug 25 15:46:40 2017
-// Host        : WK73 running 64-bit Service Pack 1  (build 7601)
+// Tool Version: Vivado v.2017.3 (win64) Build 2018833 Wed Oct  4 19:58:22 MDT 2017
+// Date        : Wed Dec  6 20:59:15 2017
+// Host        : DESKTOP-9HMNAI5 running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode synth_stub
-//               c:/sam_work/git/digilent/Arty-S7-50-base-uc/src/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_stub.v
+//               C:/sam_work/git/digilent/Arty-S7-50-base-uc/src/bd/system/ip/system_microblaze_0_0/system_microblaze_0_0_stub.v
 // Design      : system_microblaze_0_0
 // Purpose     : Stub declaration of top-level module interface
 // Device      : xc7s50csga324-1
@@ -13,7 +13,7 @@
 // This empty module with port declaration file causes synthesis tools to infer a black box for IP.
 // The synthesis directives are for Synopsys Synplify support to prevent IO buffer insertion.
 // Please paste the declaration into a Verilog source file or add the file as an additional source.
-(* x_core_info = "MicroBlaze,Vivado 2017.2" *)
+(* x_core_info = "MicroBlaze,Vivado 2017.3" *)
 module system_microblaze_0_0(Clk, Reset, Interrupt, Interrupt_Address, 
   Interrupt_Ack, Instr_Addr, Instr, IFetch, I_AS, IReady, IWAIT, ICE, IUE, Data_Addr, Data_Read, 
   Data_Write, D_AS, Read_Strobe, Write_Strobe, DReady, DWait, DCE, DUE, Byte_Enable, M_AXI_DP_AWADDR, 

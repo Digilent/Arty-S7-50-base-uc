@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x916352A316404524" bd:device="xc7s50csga324-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2017.2" bd:top="system" bd:version="1.00.a">
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x916352A316404524" bd:device="xc7s50csga324-1" bd:isValidated="true" bd:synthFlowMode="Hierarchical" bd:tool_version="2017.3" bd:top="system" bd:version="1.00.a">
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
@@ -184,12 +184,6 @@
       </spirit:views>
       <spirit:ports>
         <spirit:port>
-          <spirit:name>reset</spirit:name>
-          <spirit:wire>
-            <spirit:direction>in</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
           <spirit:name>rgb_led</spirit:name>
           <spirit:wire>
             <spirit:direction>out</spirit:direction>
@@ -197,6 +191,12 @@
               <spirit:left>5</spirit:left>
               <spirit:right>0</spirit:right>
             </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>reset</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
           </spirit:wire>
         </spirit:port>
         <spirit:port>
@@ -221,6 +221,26 @@
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_PWM_0_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="NUM_PWM">6</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>microblaze_0_axi_intc</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="axi_intc" spirit:vendor="xilinx.com" spirit:version="4.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_microblaze_0_axi_intc_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_HAS_FAST">1</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>microblaze_0_local_memory</spirit:instanceName>
+        <spirit:componentRef spirit:library="BlockDiagram/system_imp" spirit:name="microblaze_0_local_memory" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>microblaze_0_xlconcat</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconcat" spirit:vendor="xilinx.com" spirit:version="2.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_microblaze_0_xlconcat_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="NUM_PORTS">5</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -255,6 +275,7 @@
           <spirit:configurableElementValue spirit:referenceId="C_FIFO_DEPTH">256</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="USE_BOARD_FLOW">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="QSPI_BOARD_INTERFACE">qspi_flash</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_S_AXI4_ID_WIDTH">0</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -321,6 +342,7 @@
           <spirit:configurableElementValue spirit:referenceId="C_D_LMB">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_I_AXI">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_I_LMB">1</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="G_TEMPLATE_LIST">8</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_USE_MSR_INSTR">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_USE_PCMP_INSTR">1</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="C_USE_REORDER_INSTR">0</spirit:configurableElementValue>
@@ -335,32 +357,13 @@
         <bd:hdl_attributes/>
       </spirit:componentInstance>
       <spirit:componentInstance>
-        <spirit:instanceName>microblaze_0_axi_intc</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="axi_intc" spirit:vendor="xilinx.com" spirit:version="4.1"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_microblaze_0_axi_intc_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_HAS_FAST">1</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
         <spirit:instanceName>microblaze_0_axi_periph</spirit:instanceName>
         <spirit:componentRef spirit:library="BlockDiagram/system_imp" spirit:name="microblaze_0_axi_periph" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_microblaze_0_axi_periph_0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="NUM_MI">8</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="SYNCHRONIZATION_STAGES">2</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="appcore">xilinx.com:ip:axi_interconnect:2.1</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>microblaze_0_local_memory</spirit:instanceName>
-        <spirit:componentRef spirit:library="BlockDiagram/system_imp" spirit:name="microblaze_0_local_memory" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>microblaze_0_xlconcat</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="xlconcat" spirit:vendor="xilinx.com" spirit:version="2.1"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_microblaze_0_xlconcat_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="NUM_PORTS">5</spirit:configurableElementValue>
         </spirit:configurableElementValues>
       </spirit:componentInstance>
       <spirit:componentInstance>
@@ -368,6 +371,7 @@
         <spirit:componentRef spirit:library="ip" spirit:name="proc_sys_reset" spirit:vendor="xilinx.com" spirit:version="5.0"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_rst_clk_wiz_0_100M_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_EXT_RESET_HIGH">0</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="USE_BOARD_FLOW">true</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="RESET_BOARD_INTERFACE">reset</spirit:configurableElementValue>
         </spirit:configurableElementValues>
@@ -377,9 +381,11 @@
         <spirit:componentRef spirit:library="ip" spirit:name="xadc_wiz" spirit:vendor="xilinx.com" spirit:version="3.3"/>
         <spirit:configurableElementValues>
           <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_xadc_wiz_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="INTERFACE_SELECTION">Enable_AXI</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="XADC_STARUP_SELECTION">channel_sequencer</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="ADC_CONVERSION_RATE">200</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="SEQUENCER_MODE">Continuous</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="ENABLE_RESET">false</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="SINGLE_CHANNEL_SELECTION">TEMPERATURE</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="EXTERNAL_MUX_CHANNEL">VP_VN</spirit:configurableElementValue>
           <spirit:configurableElementValue spirit:referenceId="CHANNEL_ENABLE_TEMPERATURE">true</spirit:configurableElementValue>
@@ -503,6 +509,8 @@
         <spirit:name>microblaze_0_Clk</spirit:name>
         <spirit:internalPortReference spirit:componentRef="clk_wiz_0" spirit:portRef="clk_out1"/>
         <spirit:internalPortReference spirit:componentRef="PWM_0" spirit:portRef="pwm_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="processor_clk"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_input" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_led" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_quad_spi_0" spirit:portRef="ext_spi_clk"/>
@@ -510,21 +518,19 @@
         <spirit:internalPortReference spirit:componentRef="axi_timer_0" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="axi_uartlite_0" spirit:portRef="s_axi_aclk"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0" spirit:portRef="Clk"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="processor_clk"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="rst_clk_wiz_0_100M" spirit:portRef="slowest_sync_clk"/>
+        <spirit:internalPortReference spirit:componentRef="xadc_wiz_0" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_local_memory" spirit:portRef="LMB_Clk"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="ACLK"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="S00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M00_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M01_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M02_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M03_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M04_ACLK"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M05_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M07_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="S00_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_local_memory" spirit:portRef="LMB_Clk"/>
-        <spirit:internalPortReference spirit:componentRef="rst_clk_wiz_0_100M" spirit:portRef="slowest_sync_clk"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M06_ACLK"/>
-        <spirit:internalPortReference spirit:componentRef="xadc_wiz_0" spirit:portRef="s_axi_aclk"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M07_ACLK"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>microblaze_0_intr</spirit:name>
@@ -550,29 +556,29 @@
       <spirit:adHocConnection>
         <spirit:name>rst_clk_wiz_0_100M_mb_reset</spirit:name>
         <spirit:internalPortReference spirit:componentRef="rst_clk_wiz_0_100M" spirit:portRef="mb_reset"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0" spirit:portRef="Reset"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="processor_rst"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0" spirit:portRef="Reset"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>rst_clk_wiz_0_100M_peripheral_aresetn</spirit:name>
         <spirit:internalPortReference spirit:componentRef="rst_clk_wiz_0_100M" spirit:portRef="peripheral_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="PWM_0" spirit:portRef="pwm_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_input" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_gpio_led" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_quad_spi_0" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_timer_0" spirit:portRef="s_axi_aresetn"/>
         <spirit:internalPortReference spirit:componentRef="axi_uartlite_0" spirit:portRef="s_axi_aresetn"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_intc" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="xadc_wiz_0" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M01_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M02_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M03_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M04_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M05_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M07_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="S00_ARESETN"/>
         <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M06_ARESETN"/>
-        <spirit:internalPortReference spirit:componentRef="xadc_wiz_0" spirit:portRef="s_axi_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="microblaze_0_axi_periph" spirit:portRef="M07_ARESETN"/>
       </spirit:adHocConnection>
       <spirit:adHocConnection>
         <spirit:name>sys_clock_1</spirit:name>
@@ -627,183 +633,6 @@
       </spirit:hierConnection>
       <spirit:hierConnection spirit:interfaceRef="usb_uart/axi_uartlite_0_UART">
         <spirit:activeInterface spirit:busRef="UART" spirit:componentRef="axi_uartlite_0"/>
-      </spirit:hierConnection>
-    </spirit:hierConnections>
-  </spirit:design>
-
-  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
-    <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>BlockDiagram/system_imp</spirit:library>
-    <spirit:name>microblaze_0_local_memory</spirit:name>
-    <spirit:version>1.00.a</spirit:version>
-    <spirit:busInterfaces>
-      <spirit:busInterface>
-        <spirit:name>DLMB</spirit:name>
-        <spirit:mirroredMaster/>
-        <spirit:busType spirit:library="interface" spirit:name="lmb" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="interface" spirit:name="lmb_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-      </spirit:busInterface>
-      <spirit:busInterface>
-        <spirit:name>ILMB</spirit:name>
-        <spirit:mirroredMaster/>
-        <spirit:busType spirit:library="interface" spirit:name="lmb" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="interface" spirit:name="lmb_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-      </spirit:busInterface>
-      <spirit:busInterface>
-        <spirit:name>CLK.LMB_CLK</spirit:name>
-        <spirit:displayName>Clk</spirit:displayName>
-        <spirit:description>Clock</spirit:description>
-        <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="signal" spirit:name="clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:slave/>
-        <spirit:portMaps>
-          <spirit:portMap>
-            <spirit:logicalPort>
-              <spirit:name>CLK</spirit:name>
-            </spirit:logicalPort>
-            <spirit:physicalPort>
-              <spirit:name>LMB_Clk</spirit:name>
-            </spirit:physicalPort>
-          </spirit:portMap>
-        </spirit:portMaps>
-      </spirit:busInterface>
-      <spirit:busInterface>
-        <spirit:name>RST.SYS_RST</spirit:name>
-        <spirit:displayName>Reset</spirit:displayName>
-        <spirit:description>Reset</spirit:description>
-        <spirit:busType spirit:library="signal" spirit:name="reset" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:abstractionType spirit:library="signal" spirit:name="reset_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
-        <spirit:slave/>
-        <spirit:portMaps>
-          <spirit:portMap>
-            <spirit:logicalPort>
-              <spirit:name>RST</spirit:name>
-            </spirit:logicalPort>
-            <spirit:physicalPort>
-              <spirit:name>SYS_Rst</spirit:name>
-            </spirit:physicalPort>
-          </spirit:portMap>
-        </spirit:portMaps>
-      </spirit:busInterface>
-    </spirit:busInterfaces>
-    <spirit:model>
-      <spirit:views>
-        <spirit:view>
-          <spirit:name>BlockDiagram</spirit:name>
-          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
-          <spirit:hierarchyRef spirit:library="BlockDiagram/system_imp" spirit:name="microblaze_0_local_memory_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
-        </spirit:view>
-      </spirit:views>
-      <spirit:ports>
-        <spirit:port>
-          <spirit:name>LMB_Clk</spirit:name>
-          <spirit:wire>
-            <spirit:direction>in</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-        <spirit:port>
-          <spirit:name>SYS_Rst</spirit:name>
-          <spirit:wire>
-            <spirit:direction>in</spirit:direction>
-          </spirit:wire>
-        </spirit:port>
-      </spirit:ports>
-    </spirit:model>
-  </spirit:component>
-
-  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
-    <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>BlockDiagram/system_imp</spirit:library>
-    <spirit:name>microblaze_0_local_memory_imp</spirit:name>
-    <spirit:version>1.00.a</spirit:version>
-    <spirit:componentInstances>
-      <spirit:componentInstance>
-        <spirit:instanceName>dlmb_bram_if_cntlr</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="lmb_bram_if_cntlr" spirit:vendor="xilinx.com" spirit:version="4.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_dlmb_bram_if_cntlr_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_ECC">0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-        <bd:hdl_attributes/>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>dlmb_v10</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="lmb_v10" spirit:vendor="xilinx.com" spirit:version="3.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_dlmb_v10_0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>ilmb_bram_if_cntlr</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="lmb_bram_if_cntlr" spirit:vendor="xilinx.com" spirit:version="4.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_ilmb_bram_if_cntlr_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="C_ECC">0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>ilmb_v10</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="lmb_v10" spirit:vendor="xilinx.com" spirit:version="3.0"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_ilmb_v10_0</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-      <spirit:componentInstance>
-        <spirit:instanceName>lmb_bram</spirit:instanceName>
-        <spirit:componentRef spirit:library="ip" spirit:name="blk_mem_gen" spirit:vendor="xilinx.com" spirit:version="8.3"/>
-        <spirit:configurableElementValues>
-          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_lmb_bram_0</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="Memory_Type">True_Dual_Port_RAM</spirit:configurableElementValue>
-          <spirit:configurableElementValue spirit:referenceId="use_bram_block">BRAM_Controller</spirit:configurableElementValue>
-        </spirit:configurableElementValues>
-      </spirit:componentInstance>
-    </spirit:componentInstances>
-    <spirit:interconnections>
-      <spirit:interconnection>
-        <spirit:name>microblaze_0_dlmb_bus</spirit:name>
-        <spirit:activeInterface spirit:busRef="SLMB" spirit:componentRef="dlmb_bram_if_cntlr"/>
-        <spirit:activeInterface spirit:busRef="LMB_Sl_0" spirit:componentRef="dlmb_v10"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>microblaze_0_dlmb_cntlr</spirit:name>
-        <spirit:activeInterface spirit:busRef="BRAM_PORT" spirit:componentRef="dlmb_bram_if_cntlr"/>
-        <spirit:activeInterface spirit:busRef="BRAM_PORTA" spirit:componentRef="lmb_bram"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>microblaze_0_ilmb_bus</spirit:name>
-        <spirit:activeInterface spirit:busRef="SLMB" spirit:componentRef="ilmb_bram_if_cntlr"/>
-        <spirit:activeInterface spirit:busRef="LMB_Sl_0" spirit:componentRef="ilmb_v10"/>
-      </spirit:interconnection>
-      <spirit:interconnection>
-        <spirit:name>microblaze_0_ilmb_cntlr</spirit:name>
-        <spirit:activeInterface spirit:busRef="BRAM_PORT" spirit:componentRef="ilmb_bram_if_cntlr"/>
-        <spirit:activeInterface spirit:busRef="BRAM_PORTB" spirit:componentRef="lmb_bram"/>
-      </spirit:interconnection>
-    </spirit:interconnections>
-    <spirit:adHocConnections>
-      <spirit:adHocConnection>
-        <spirit:name>SYS_Rst_1</spirit:name>
-        <spirit:externalPortReference spirit:portRef="SYS_Rst"/>
-        <spirit:internalPortReference spirit:componentRef="dlmb_bram_if_cntlr" spirit:portRef="LMB_Rst"/>
-        <spirit:internalPortReference spirit:componentRef="dlmb_v10" spirit:portRef="SYS_Rst"/>
-        <spirit:internalPortReference spirit:componentRef="ilmb_bram_if_cntlr" spirit:portRef="LMB_Rst"/>
-        <spirit:internalPortReference spirit:componentRef="ilmb_v10" spirit:portRef="SYS_Rst"/>
-      </spirit:adHocConnection>
-      <spirit:adHocConnection>
-        <spirit:name>microblaze_0_Clk</spirit:name>
-        <spirit:externalPortReference spirit:portRef="LMB_Clk"/>
-        <spirit:internalPortReference spirit:componentRef="dlmb_bram_if_cntlr" spirit:portRef="LMB_Clk"/>
-        <spirit:internalPortReference spirit:componentRef="dlmb_v10" spirit:portRef="LMB_Clk"/>
-        <spirit:internalPortReference spirit:componentRef="ilmb_bram_if_cntlr" spirit:portRef="LMB_Clk"/>
-        <spirit:internalPortReference spirit:componentRef="ilmb_v10" spirit:portRef="LMB_Clk"/>
-      </spirit:adHocConnection>
-    </spirit:adHocConnections>
-    <spirit:hierConnections>
-      <spirit:hierConnection spirit:interfaceRef="DLMB/microblaze_0_dlmb">
-        <spirit:activeInterface spirit:busRef="LMB_M" spirit:componentRef="dlmb_v10"/>
-      </spirit:hierConnection>
-      <spirit:hierConnection spirit:interfaceRef="ILMB/microblaze_0_ilmb">
-        <spirit:activeInterface spirit:busRef="LMB_M" spirit:componentRef="ilmb_v10"/>
       </spirit:hierConnection>
     </spirit:hierConnections>
   </spirit:design>
@@ -3444,17 +3273,218 @@
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
-    <spirit:library>Addressing/mdm_1</spirit:library>
-    <spirit:name>mdm</spirit:name>
-    <spirit:version>3.2</spirit:version>
-    <spirit:addressSpaces/>
+    <spirit:library>BlockDiagram/system_imp</spirit:library>
+    <spirit:name>microblaze_0_local_memory</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>DLMB</spirit:name>
+        <spirit:mirroredMaster/>
+        <spirit:busType spirit:library="interface" spirit:name="lmb" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="lmb_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>ILMB</spirit:name>
+        <spirit:mirroredMaster/>
+        <spirit:busType spirit:library="interface" spirit:name="lmb" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="lmb_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>CLK.LMB_CLK</spirit:name>
+        <spirit:displayName>Clk</spirit:displayName>
+        <spirit:description>Clock</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>CLK</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>LMB_Clk</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>RST.SYS_RST</spirit:name>
+        <spirit:displayName>Reset</spirit:displayName>
+        <spirit:description>Reset</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="reset" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="reset_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>RST</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>SYS_Rst</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:model>
+      <spirit:views>
+        <spirit:view>
+          <spirit:name>BlockDiagram</spirit:name>
+          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
+          <spirit:hierarchyRef spirit:library="BlockDiagram/system_imp" spirit:name="microblaze_0_local_memory_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+        </spirit:view>
+      </spirit:views>
+      <spirit:ports>
+        <spirit:port>
+          <spirit:name>LMB_Clk</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>SYS_Rst</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+      </spirit:ports>
+    </spirit:model>
   </spirit:component>
+
+  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram/system_imp</spirit:library>
+    <spirit:name>microblaze_0_local_memory_imp</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:componentInstances>
+      <spirit:componentInstance>
+        <spirit:instanceName>dlmb_v10</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="lmb_v10" spirit:vendor="xilinx.com" spirit:version="3.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_dlmb_v10_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>ilmb_v10</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="lmb_v10" spirit:vendor="xilinx.com" spirit:version="3.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_ilmb_v10_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>dlmb_bram_if_cntlr</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="lmb_bram_if_cntlr" spirit:vendor="xilinx.com" spirit:version="4.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_dlmb_bram_if_cntlr_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_ECC">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+        <bd:hdl_attributes/>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>ilmb_bram_if_cntlr</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="lmb_bram_if_cntlr" spirit:vendor="xilinx.com" spirit:version="4.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_ilmb_bram_if_cntlr_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_ECC">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>lmb_bram</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="blk_mem_gen" spirit:vendor="xilinx.com" spirit:version="8.4"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">system_lmb_bram_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="Memory_Type">True_Dual_Port_RAM</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="Enable_B">Use_ENB_Pin</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="Use_RSTB_Pin">true</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="Port_B_Clock">100</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="Port_B_Write_Rate">50</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="Port_B_Enable_Rate">100</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="use_bram_block">BRAM_Controller</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="EN_SAFETY_CKT">false</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+    </spirit:componentInstances>
+    <spirit:interconnections>
+      <spirit:interconnection>
+        <spirit:name>microblaze_0_dlmb_bus</spirit:name>
+        <spirit:activeInterface spirit:busRef="SLMB" spirit:componentRef="dlmb_bram_if_cntlr"/>
+        <spirit:activeInterface spirit:busRef="LMB_Sl_0" spirit:componentRef="dlmb_v10"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>microblaze_0_dlmb_cntlr</spirit:name>
+        <spirit:activeInterface spirit:busRef="BRAM_PORT" spirit:componentRef="dlmb_bram_if_cntlr"/>
+        <spirit:activeInterface spirit:busRef="BRAM_PORTA" spirit:componentRef="lmb_bram"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>microblaze_0_ilmb_bus</spirit:name>
+        <spirit:activeInterface spirit:busRef="SLMB" spirit:componentRef="ilmb_bram_if_cntlr"/>
+        <spirit:activeInterface spirit:busRef="LMB_Sl_0" spirit:componentRef="ilmb_v10"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>microblaze_0_ilmb_cntlr</spirit:name>
+        <spirit:activeInterface spirit:busRef="BRAM_PORT" spirit:componentRef="ilmb_bram_if_cntlr"/>
+        <spirit:activeInterface spirit:busRef="BRAM_PORTB" spirit:componentRef="lmb_bram"/>
+      </spirit:interconnection>
+    </spirit:interconnections>
+    <spirit:adHocConnections>
+      <spirit:adHocConnection>
+        <spirit:name>SYS_Rst_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="SYS_Rst"/>
+        <spirit:internalPortReference spirit:componentRef="dlmb_v10" spirit:portRef="SYS_Rst"/>
+        <spirit:internalPortReference spirit:componentRef="ilmb_v10" spirit:portRef="SYS_Rst"/>
+        <spirit:internalPortReference spirit:componentRef="dlmb_bram_if_cntlr" spirit:portRef="LMB_Rst"/>
+        <spirit:internalPortReference spirit:componentRef="ilmb_bram_if_cntlr" spirit:portRef="LMB_Rst"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>microblaze_0_Clk</spirit:name>
+        <spirit:externalPortReference spirit:portRef="LMB_Clk"/>
+        <spirit:internalPortReference spirit:componentRef="dlmb_v10" spirit:portRef="LMB_Clk"/>
+        <spirit:internalPortReference spirit:componentRef="ilmb_v10" spirit:portRef="LMB_Clk"/>
+        <spirit:internalPortReference spirit:componentRef="dlmb_bram_if_cntlr" spirit:portRef="LMB_Clk"/>
+        <spirit:internalPortReference spirit:componentRef="ilmb_bram_if_cntlr" spirit:portRef="LMB_Clk"/>
+      </spirit:adHocConnection>
+    </spirit:adHocConnections>
+    <spirit:hierConnections>
+      <spirit:hierConnection spirit:interfaceRef="DLMB/microblaze_0_dlmb">
+        <spirit:activeInterface spirit:busRef="LMB_M" spirit:componentRef="dlmb_v10"/>
+      </spirit:hierConnection>
+      <spirit:hierConnection spirit:interfaceRef="ILMB/microblaze_0_ilmb">
+        <spirit:activeInterface spirit:busRef="LMB_M" spirit:componentRef="ilmb_v10"/>
+      </spirit:hierConnection>
+    </spirit:hierConnections>
+  </spirit:design>
 
   <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
     <spirit:vendor>xilinx.com</spirit:vendor>
     <spirit:library>Addressing/microblaze_0</spirit:library>
     <spirit:name>microblaze</spirit:name>
     <spirit:version>10.0</spirit:version>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>DLMB</spirit:name>
+        <spirit:master>
+          <spirit:addressSpaceRef spirit:addressSpaceRef="Data"/>
+        </spirit:master>
+        <spirit:busType spirit:library="interface" spirit:name="lmb" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="lmb_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>M_AXI_DP</spirit:name>
+        <spirit:master>
+          <spirit:addressSpaceRef spirit:addressSpaceRef="Data"/>
+        </spirit:master>
+        <spirit:busType spirit:library="interface" spirit:name="aximm" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>ILMB</spirit:name>
+        <spirit:master>
+          <spirit:addressSpaceRef spirit:addressSpaceRef="Instruction"/>
+        </spirit:master>
+        <spirit:busType spirit:library="interface" spirit:name="lmb" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="lmb_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
     <spirit:addressSpaces>
       <spirit:addressSpace>
         <spirit:name>Data</spirit:name>
